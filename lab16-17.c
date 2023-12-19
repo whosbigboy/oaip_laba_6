@@ -122,6 +122,36 @@ void EvensEvens() { // Продублировать все чётные элементы
 	}
 }
 
+void SaveArrayInFile() { // Сохранить в файл(out1) состояние массива
+	FILE* fout = fopen("C:\\Users\\dimoo\\source\\repos\\lab16-17\\out1.txt", "wt");
+	if (fout == NULL) {
+		printf("Выходной файл не создался");
+		return;
+	}
+
+	fprintf(fout, "%d\n", n);
+	for (int i = 0; i < n; i++) {
+		fprintf(fout, "%d ", arr[i]);
+	}
+	printf("Сохранение завершено");
+	fclose(fout);
+}
+
+void UploadArrayFromFile() { // Загрузить состояние массива из файла(in1)
+	FILE* fin = fopen("C:\\Users\\dimoo\\source\\repos\\lab16-17\\in1.txt", "rt");
+	if (fin == NULL) {
+		printf("Входной файл не найден");
+		return;
+	}
+
+	fscanf(fin, "%d", &n);
+	for (int i = 0; i < n; i++) {
+		fscanf(fin, "%d", &arr[i]);
+	}
+	printf("Загрузка завершена");
+	fclose(fin);
+}
+
 
 void main() {
 
@@ -148,6 +178,8 @@ void main() {
 		printf("12: Удалить минимальный элемент\n");
 		printf("13: Перед минимальным элементом вставить 0\n");
 		printf("14: Продублировать все чётные элементы\n\n");
+		printf("15: Сохранить в файл(out1) состояние массива\n");
+		printf("16: Загрузить состояние массива из файла(in1)\n");
 		printf("0: Выйти из программы\n");
 		printf("Выбранная операция >>>>>> ");
 
@@ -257,6 +289,16 @@ void main() {
 		case 14:
 			EvensEvens();
 			break;
+
+		case 15:
+			SaveArrayInFile();
+			break;
+
+			// лаба18 ЗАДАЧА 8
+		case 16:
+			UploadArrayFromFile();
+			break;
+
 
 		}
 
