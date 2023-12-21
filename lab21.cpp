@@ -262,6 +262,26 @@ void GoldDown() {
 	}
 }
 
+void doMidasHand(int i, int j) {
+	if (map[i][j] == 2) { // 2 - стена
+		map[i][j] = 3; // 3 - золото
+		if (i > 0) doMidasHand(i - 1, j);
+		if (i < N - 1) doMidasHand(i + 1, j);
+		if (j > 0) doMidasHand(i, j - 1);
+		if (j < M - 1) doMidasHand(i, j + 1);
+	}
+}
+
+void midasHandToRight() {
+	for (int i = 0; i < N; ++i) {
+		for (int j = 0; j < M - 1; ++j) {
+			if (map[i][j] == 1 && map[i][j + 1] == 2) {
+				doMidasHand(i, j + 1);
+			}
+		}
+	}
+}
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -406,6 +426,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case VK_RIGHT:
 			Right();
+			InvalidateRect(hWnd, NULL, TRUE);
+			break;
+
+		case 0x4d: // M - MidasHand
+			midasHandToRight();
 			InvalidateRect(hWnd, NULL, TRUE);
 			break;
 		}
