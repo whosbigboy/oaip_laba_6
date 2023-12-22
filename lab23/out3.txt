@@ -1,0 +1,33 @@
+
+
+while (!feof(fin)) {#
+		if (fgets(s, MAX_LEN - 1, fin) != NULL) {#
+			int l = 0;#
+			for (int k = 0; s[k] != '\0'; k++) {#
+				l++;#
+			}
+
+			int ht = 0;#
+			for (int i = 0; s[i] != '\0'; i++) {#
+				if (isalpha((unsigned char)s[i])){#
+					ht = 1;#
+				}
+
+				if (ht == 1) {#
+					s[l-1] = '#';#
+				}
+
+				else {#
+					printf("\n");#
+					u++;#
+				}
+
+				}
+
+			fprintf(fout, "%s\n", s);#
+			printf(">>%s<<\n", s);#
+
+
+		}
+
+	}

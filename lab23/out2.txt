@@ -1,0 +1,92 @@
+ъпнякюб яюбекэеб йпср
+
+#DEFINE _CRT_SECURE_NO_WARNINGS
+#INCLUDE <STDIO.H>
+#INCLUDE <WINDOWS.H>
+#INCLUDE <CTYPE.H>
+
+#DEFINE MAX_LEN 80
+CHAR S[MAX_LEN];
+
+INT TOUPPERALL(INT C) {
+	INT NEW_C = C;
+	IF (C >= 'A' && C <= 'Z') NEW_C = 'A' + (C - 'A');
+	IF (C >= 'ю' && C <= 'о') NEW_C = 'ю' + (C - 'ю');
+	IF (C >= 'п' && C <= 'ъ') NEW_C = 'п' + (C - 'п');
+	IF (C == '╗') NEW_C = '╗';
+	RETURN NEW_C;
+}
+
+VOID MAIN() {
+	SETCONSOLECP(1251);
+	SETCONSOLEOUTPUTCP(1251);
+	PRINTF("аюпшьеб длхрпхи\N");
+	PRINTF("кп23 гюдювю 1\N");
+
+	//// бундмни тюик
+	//FILE* FIN = FOPEN("C:\\USERS\\DIMOO\\SOURCE\\REPOS\\LAB23\\LAB23\\TEXT1.TXT", "RT");
+	//IF (FIN == NULL) {
+	//	PRINTF("бундмни тюик ме мюидем");
+	//	RETURN;
+	//}
+
+	//// бшундмни тюик
+	//FILE* FOUT;
+	//FOUT = FOPEN("C:\\USERS\\DIMOO\\SOURCE\\REPOS\\LAB23\\LAB23\\OUT1.TXT", "WT");
+	//IF (FOUT == NULL) {
+	//	PRINTF("бшундмни тюик ме янгдюкяъ");
+	//	RETURN;
+	//}
+
+	//// б жхйке дкъ бяеу ярпнй
+	//WHILE (!FEOF(FIN)) {
+	//	// гюцпсгхрэ ярпнйс
+	//	IF (FGETS(S, MAX_LEN - 1, FIN) != NULL) {
+	//		// напюанрюрэ гюцпсфеммсч ярпнйс
+	//		FOR (INT I = 0; S[I] != '\0'; I++) {
+
+	//			IF (S[I] == '\T') // еякх опнвхрюм опнаек
+	//				S[I] = '%'; // гюлемъел ецн мю '%▓
+
+	//		}
+	//		// янупюмхрэ ярпнйс б бшундмни тюик
+	//		FPRINTF(FOUT, "%S", S);
+	//		PRINTF(">>%S<<\N", S);
+	//	}
+	//}
+
+	// бундмни тюик
+	FILE* FIN = FOPEN("C:\\USERS\\DIMOO\\SOURCE\\REPOS\\LAB23\\LAB23\\TEXT2.TXT", "RT");
+	IF (FIN == NULL) {
+		PRINTF("бундмни тюик ме мюидем");
+		RETURN;
+	}
+
+	// бшундмни тюик
+	FILE* FOUT;
+	FOUT = FOPEN("C:\\USERS\\DIMOO\\SOURCE\\REPOS\\LAB23\\LAB23\\OUT2.TXT", "WT");
+	IF (FOUT == NULL) {
+		PRINTF("бшундмни тюик ме янгдюкяъ");
+		RETURN;
+	}
+
+	WHILE (!FEOF(FIN)) {
+		// гюцпсгхрэ ярпнйс
+		IF (FGETS(S, MAX_LEN - 1, FIN) != NULL) {
+			// напюанрюрэ гюцпсфеммсч ярпнйс
+			FOR (INT I = 0; S[I] != '\0'; I++) {
+				S[I] = TOUPPERALL(S[I]);
+
+			}
+			// янупюмхрэ ярпнйс б бшундмни тюик
+			FPRINTF(FOUT, "%S", S);
+			PRINTF(">>%S<<\N", S);
+		}
+	}
+
+	FCLOSE(FIN);
+	FCLOSE(FOUT);
+
+	PRINTF("кп23 гюдювю 1 FINISH\N");
+}
+

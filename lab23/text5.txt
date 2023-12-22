@@ -1,0 +1,5 @@
+fclose(fin);
+
+	// Закрываем HTML файл 
+	fclose(fout);
+	printf("END!!!\n");
