@@ -1,0 +1,4 @@
+﻿  Experiment.c
+C:\Users\dimoo\source\repos\lab28\lab28\Experiment.c(10,2): warning C4013: SetConsoleCP: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\dimoo\source\repos\lab28\lab28\Experiment.c(11,2): warning C4013: SetConsoleOutputCP: нет определения; предполагается "extern" с возвратом типа "int"
+  lab28.vcxproj -> C:\Users\dimoo\source\repos\lab28\x64\Debug\lab28.exe
